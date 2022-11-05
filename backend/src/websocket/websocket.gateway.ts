@@ -20,6 +20,7 @@ export class WebsocketGateway {
       send message: ${payload}
     `);
 
+    client.emit("chat", payload);
     client.broadcast.emit("chat", payload);
   }
 

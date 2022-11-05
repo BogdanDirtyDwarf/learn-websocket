@@ -1,15 +1,20 @@
+import { useEffect } from 'react'
 import { socket } from './socket/socket'
 
 
-function App() {
-  socket.emit('chat', {message:'1234'});
+const App = () => {
+  useEffect(()=>{
   
-  socket.on('chat', (e)=>{
-    console.log(e);
-  });
+    socket.on('chat', (e)=>{
+      console.log(e);
+    });
+  },[])
   return (
-    <div className="App">
-      
+    <div className="App" onClick={() => {
+    socket.emit('chat', {message:'1234'});
+
+    }}>
+      1
     </div>
   )
 }
