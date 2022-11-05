@@ -14,13 +14,13 @@ export class WebsocketGateway {
   handleMessage(
     @MessageBody() payload: WebSocketDTO,
     @ConnectedSocket() client: Socket,
-  ): WebSocketDTO {
+  ) {
     console.log(
       `Client: ${client.id}
       send message: ${payload}
     `);
 
-    return payload;
+    client.broadcast.emit("chat", payload);
   }
 
   handleDisconnect(client: Socket) {
